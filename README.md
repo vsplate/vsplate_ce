@@ -120,15 +120,17 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
     sudo mkdir /docker-compose
     sudo mkdir /docker-compose/data
     sudo mkdir /var/www/data
+    sudo mkdir /var/www/py-download
     sudo chmod -R 777 /docker-compose
     sudo chmod -R 777 /var/www/data
+    sudo chmod -R 777 /var/www/py-download
     sudo rm -rf /var/www/html/
 
     sudo mv clean_img.py /docker-compose/clean_img.py
 
     sudo mv apache_html_80 /var/www/html
     sudo mv apache_html_81 /var/www/dockerapi
-    sudo mv py_download_82 /var/www/
+    sudo mv py_download_82 /var/www/py-download
     ```
 
 8. 将www-data加入docker组
@@ -142,7 +144,8 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
 
     ```bash
     sudo mv apache2_conf/ports.conf /etc/apache2/ports.conf
-    sudo mv apache2_conf/dockerapi.conf /etc/apache2/dockerapi.conf
+    sudo mv apache2_conf/dockerapi.conf /etc/apache2/sites-available/dockerapi.conf
+    sudo a2ensite dockerapi
     sudo service apache2 restart
 
     sudo mv supervisor_vsplate.conf /etc/supervisor/conf.d/supervisor_vsplate.conf
