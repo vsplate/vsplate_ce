@@ -18,9 +18,8 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
 ## 目录说明
 
 * apache_html_80 控制台/用户操作界面
-* apache_html_81 提供 API 供控制台调用，启动/关闭容器
+* py-docker-compose_81 提供 API 供控制台调用，启动/关闭容器
 * py_download_82 负责下载 Github 项目到本地
-* apache2_conf Apache 配置文件
 
 ## 安装准备
 
@@ -31,11 +30,12 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
 
 2. 设置一个 Redis 密码
 
+* 将文件 ./py-docker-compose_81/config.py 中的变量 queue_redis_pwd 修改为您设置的 Redis 密码。
 * 将文件 ./py_download_82/config.py 中的变量 queue_redis_pwd 修改为您设置的 Redis 密码。
 
-3. 设置一个 apache_html_81 服务的访问密码
+3. 设置一个 py-docker-compose_81 服务的访问密码
     
-* 将文件 ./apache_html_81/inc/config.py 中的常量 Z_AUTHKEY 修改为您设置的访问密码。
+* 将文件 ./py-docker-compose_81/config.py 中的变量 auth_key 修改为您设置的 Redis 密码。
 * 将文件 ./apache_html_80/inc/config.php 中的常量 DOCKER_API_KEY 修改为您设置的访问密码。
    
 4. 设置一个 py_download_82 服务的访问密码
@@ -101,7 +101,7 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
     ```sql
     create database vsplate;
     use vsplate;
-    source /路径/apache_html_81.sql;
+    source /路径/localhost.sql;
     ```
 
 6. 安装 Redis，并设置密码（密码为上面`安装准备`步骤中您设置的 Redis 密码）
@@ -121,38 +121,28 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
     sudo mkdir /docker-compose/data
     sudo mkdir /var/www/data
     sudo mkdir /var/www/py-download
+    sudo mkdir /var/www/py-docker-compose
     sudo chmod -R 777 /docker-compose
     sudo chmod -R 777 /var/www/data
     sudo chmod -R 777 /var/www/py-download
+    sudo chmod -R 777 /var/www/py-docker-compose
     sudo rm -rf /var/www/html/
 
     sudo mv clean_img.py /docker-compose/clean_img.py
 
     sudo mv apache_html_80 /var/www/html
-    sudo mv apache_html_81 /var/www/dockerapi
+    sudo mv py-docker-compose_81 /var/www/py-docker-compose
     sudo mv py_download_82 /var/www/py-download
     ```
 
-8. 将www-data加入docker组
+8. 配置 Supervisor
 
     ```bash
-    sudo usermod -aG docker www-data
-    service docker restart
-    ```
-
-9. 配置 Apache 和 Supervisor
-
-    ```bash
-    sudo mv apache2_conf/ports.conf /etc/apache2/ports.conf
-    sudo mv apache2_conf/dockerapi.conf /etc/apache2/sites-available/dockerapi.conf
-    sudo a2ensite dockerapi
-    sudo service apache2 restart
-
     sudo mv supervisor_vsplate.conf /etc/supervisor/conf.d/supervisor_vsplate.conf
     sudo service supervisor restart
     ```
 
-10. 重启
+9. 重启
 
     ```bash
     reboot

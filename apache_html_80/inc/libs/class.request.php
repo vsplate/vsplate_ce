@@ -68,7 +68,7 @@ abstract class Request {
         $options = array(
             'http' => array(
                 'method' => 'POST',
-                'header' => "AUTHKEY: {$auth}\r\n",
+                'header' => "AUTH-KEY: {$auth}\r\n",
                 'content' => http_build_query($data),
                 'timeout' => $this->timeout
             )
@@ -94,7 +94,7 @@ abstract class Request {
         $options = array(
             'http' => array(
                 'method' => 'POST',
-                'header' => "Content-type: application/json\r\nAUTHKEY: {$auth}\r\n",
+                'header' => "Content-type: application/json\r\nAUTH-KEY: {$auth}\r\n",
                 'content' => json_encode($data),
                 'timeout' => $this->timeout
             )
