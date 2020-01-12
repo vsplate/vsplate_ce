@@ -114,12 +114,12 @@ def limit_access():
 		abort(403)  # Forbidden
 		return 'Access Denied: '+request.remote_addr
 	#校验KEY
-	if not request.headers.get('AUTHKEY'):
+	if not request.headers.get('AUTH-KEY'):
 		abort(403)  # Forbidden
 		return 'Auth Required'
 	#query = request.query_string()
 	#data = request.get_data()
-	sdp_auth = request.headers.get('AUTHKEY')
+	sdp_auth = request.headers.get('AUTH-KEY')
 	if sdp_auth != auth_key:
 		abort(403)  # Forbidden
 		return 'Auth Required'

@@ -3,15 +3,14 @@ define('Z_ABSPATH', '/var/www/html');
 
 define('LOGIN_REQUIRED',  false);
 
-define('Z_HOST', 'www.vsplate.com');
+define('Z_HOST', $_SERVER['HTTP_HOST']);
 
 define('Z_VERSION', 'v3');
 
 define('Z_STATIC_URL', './');
 
 //docker-compose 端口
-//define('DOCKER_API_API', 'http://docker.vsplate.com:81');
-define('DOCKER_API_API', 'http://172.17.0.1:81');
+define('DOCKER_API_API', 'http://127.0.0.1:81');
 define('DOCKER_API_KEY', '***');
 
 //py-download 接口

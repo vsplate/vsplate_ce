@@ -242,7 +242,7 @@ if(Cookies.get('login_invitation') != 1){
                                         if(is_array($ports)){
                                             foreach($ports as $k2 => $val){
                                                 list($t, $o) = explode(':', $val);
-                                                $target = md5($container_name).'.'.SERVICE_DOMAIN;
+                                                $target = $_SERVER['HTTP_HOST'];
                                                 $li[] = '<li class="exited-project" title="You need to start this project in first."><div>'.esc_html($name).':'.esc_html($o).' &#x203A; </div>'.$target.'</li>';
                                             }
                                         }

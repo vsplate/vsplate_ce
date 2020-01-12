@@ -64,7 +64,7 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
     ```bash
     sudo apt-get -y update
     sudo apt-get -y upgrade
-    sudo apt-get -y install python python-requests vim supervisor apt-utils net-tools debconf-utils iputils-ping wget curl vim unzip build-essential python-pip python-flask python-redis python-tornado
+    sudo apt-get -y install python python-requests vim supervisor apt-utils net-tools debconf-utils iputils-ping wget curl vim unzip build-essential python-pip python-flask python-redis python-tornado python-gevent composer
     ```
 
 3. 安装 docker 和 docker-compose
@@ -88,7 +88,7 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
 4. 安装 apache+php+mysql
 
     ```bash
-    sudo apt-get install -y apache2 php php-mysql php-pdo php-xml libapache2-mod-php mysql mysql-server
+    sudo apt-get install -y apache2 php php-mysql php-xml libapache2-mod-php mysql-server
     
     # 开启 htaccess 支持
     sudo a2enmod rewrite
@@ -107,8 +107,8 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
 6. 安装 Redis，并设置密码（密码为上面`安装准备`步骤中您设置的 Redis 密码）
 
     ```bash
-    sudo apt install redis-server
-    sudo sed -i "s/#*requirepass.*/requirepass 新密码/" /etc/redis/redis.conf
+    sudo apt install -y redis-server
+    sudo sed -i 's/requirepass .*/requirepass ***/' /etc/redis/redis.conf && sudo sed 's/^# requirepass /requirepass /' -i /etc/redis/redis.conf
     sudo service redis restart
     ```
 
@@ -120,12 +120,10 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
     sudo mkdir /docker-compose
     sudo mkdir /docker-compose/data
     sudo mkdir /var/www/data
-    sudo mkdir /var/www/py-download
-    sudo mkdir /var/www/py-docker-compose
+    sudo mkdir -p /py-docker-compose/data
     sudo chmod -R 777 /docker-compose
     sudo chmod -R 777 /var/www/data
-    sudo chmod -R 777 /var/www/py-download
-    sudo chmod -R 777 /var/www/py-docker-compose
+    sudo chmod -R 777 /py-docker-compose/data
     sudo rm -rf /var/www/html/
 
     sudo mv clean_img.py /docker-compose/clean_img.py
@@ -133,6 +131,10 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
     sudo mv apache_html_80 /var/www/html
     sudo mv py-docker-compose_81 /var/www/py-docker-compose
     sudo mv py_download_82 /var/www/py-download
+    
+    # 安装YAML包
+    cd /var/www/html/php-docker-compose
+    composer install
     ```
 
 8. 配置 Supervisor

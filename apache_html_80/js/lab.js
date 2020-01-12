@@ -25,7 +25,7 @@ $(".edit-project-title .btn-save").live("click", function () {
 	
 	$.ajax({
 		type:'POST',
-		url: './api.php?mod=project&action=saveTitle&'+Math.random()
+		url: './api.php?mod=project&action=saveTitle&'+Math.random(),
 		timeout : 20000,
 		dataType:'json',
 		cache: false,
@@ -75,7 +75,7 @@ $(".btn-delete").live("click", function () {
 	$.startLoading();
 	$.ajax({
 		type:'POST',
-		url: './api.php?mod=project&action=delete&'+Math.random()
+		url: './api.php?mod=project&action=delete&'+Math.random(),
 		timeout : 20000,
 		dataType:'json',
 		cache: false,
@@ -115,7 +115,7 @@ $(".btn-start").live("click", function () {
 	$.startLoading();
 	$.ajax({
 		type:'POST',
-		url: './api.php?mod=project&action=start&'+Math.random()
+		url: './api.php?mod=project&action=start&'+Math.random(),
 		timeout : 60000,
 		dataType:'json',
 		cache: false,
@@ -155,7 +155,7 @@ $(".btn-stop").live("click", function () {
 	$.startLoading();
 	$.ajax({
 		type:'POST',
-		url: './api.php?mod=project&action=stop&'+Math.random()
+		url: './api.php?mod=project&action=stop&'+Math.random(),
 		timeout : 20000,
 		dataType:'json',
 		cache: false,
