@@ -281,7 +281,7 @@ class DockerAPI extends Request{
     		return false;
     	}else{
     		$result = '';
-		foreach($resp['data'] as $line){
+		foreach($resp['data']['result'] as $line){
 			$result = $result.$line;
 		}
     		if(is_json($result)){

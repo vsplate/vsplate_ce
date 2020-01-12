@@ -200,11 +200,11 @@ if(Cookies.get('login_invitation') != 1){
                                     list($hash, $name) = explode('_', $container_name);
                                     //以8开头的一般为http服务
                                     if(substr($o,0,1) == '8'){
-                                        $href = "http://".md5($container_name).'.'.SERVICE_DOMAIN.':'.$t;
-                                        $target = md5($container_name).'.'.SERVICE_DOMAIN;
+                                        $href = "http://".$_SERVER['HTTP_HOST'].':'.$t;
+                                        $target = $_SERVER['HTTP_HOST'];
                                         $li[] = '<li><div>'.esc_html($name).':'.esc_html($o).' &#x203A; </div><a target="_blank" href="'.esc_html($href).'">'.$target.':'.esc_html($t).'</a></li>';
                                     }else{
-                                        $target = md5($container_name).'.'.SERVICE_DOMAIN;
+                                        $target = $_SERVER['HTTP_HOST'];
                                         $li[] = '<li><div>'.esc_html($name).':'.esc_html($o).' &#x203A; </div>'.$target.':'.esc_html($t).'</li>';
                                     }
                                 }

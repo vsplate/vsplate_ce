@@ -109,7 +109,7 @@ class Project extends Request{
 	    }
 
 		$ps = $this->dapi->composePs($project['compose_name']);
-		if(is_array($ps) && isset($ps['data']) && isset($ps['data'][2])){
+		if(is_array($ps) && isset($ps['data'])){
 			//如果容器还没全部启动说明部分容器启动失败
 			$services = $this->inspect($id);
 			foreach($services as $service){

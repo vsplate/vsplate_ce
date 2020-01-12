@@ -64,7 +64,7 @@ VSPlate 是一款基于 docker-compose 实现的实验平台，该项目为 www.
     ```bash
     sudo apt-get -y update
     sudo apt-get -y upgrade
-    sudo apt-get -y install python python-requests vim supervisor apt-utils net-tools debconf-utils iputils-ping wget curl vim unzip build-essential python-pip python-flask python-redis python-tornado python-gevent composer
+    sudo apt-get -y install python python-requests vim supervisor apt-utils net-tools debconf-utils iputils-ping wget curl vim unzip build-essential python-pip python-flask python-redis python-tornado python-gevent composer zip
     ```
 
 3. 安装 docker 和 docker-compose
